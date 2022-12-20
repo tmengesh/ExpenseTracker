@@ -10,14 +10,14 @@ import os
 import SwiftUI
 
 extension DateFormatter {
-    
     static let allNumericFI: DateFormatter = {
         let logger = Logger.createLogger()
 
-        logger.debug("Initializing DateFormatter")
+        logger.pretty_function()
+        logger.info("Initializing DateFormatter")
         let formatter = DateFormatter()
         formatter.dateFormat = "MM.dd.yyyy"
-        logger.debug("Formatter: \(formatter)")
+        logger.info("Formatter: \(formatter)")
 
         return formatter
     }()

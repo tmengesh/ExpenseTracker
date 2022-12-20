@@ -25,6 +25,7 @@ final class TransactionListVM: ObservableObject {
     }
 
     func getTransactionsFromURL() {
+        logger.pretty_function()
         guard let url = URL(string: "https://api.npoint.io/29387d7dd433c2735d40")
 
         else {
@@ -49,7 +50,7 @@ final class TransactionListVM: ObservableObject {
                 case .failure(let error):
                     logger.debug("Error fetching transations from URL: \(error.localizedDescription)")
                 case .finished:
-                    logger.debug("Finished fetching transactions")
+                    logger.info("Finished fetching transactions")
                 }
             } receiveValue: { [weak self] result in
                 self?.transactions = result
@@ -58,6 +59,7 @@ final class TransactionListVM: ObservableObject {
     }
 
     func getTransactionsFromBundle() {
+        logger.pretty_function()
         if let fileLocation = Bundle.main.url(forResource: "transactions", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: fileLocation)
@@ -79,11 +81,12 @@ final class TransactionListVM: ObservableObject {
     }
 
     func accumulatedTransactions() -> TransactionPrefixSum {
+        logger.pretty_function()
         guard !transactions.isEmpty else { return [] }
 
         let today = "02/17/2022".dateParsed()
         let dateInterval = Calendar.current.dateInterval(of: .month, for: today)!
-        logger.debug("dateInterval")
+        logger.info("dateInterval")
 
         var sum: Double = .zero
         var cummulativeSum = TransactionPrefixSum()
