@@ -73,6 +73,7 @@ final class TransactionListVM: ObservableObject {
     }
 
     func groupTransactionByMonth() -> TransactionGroup {
+        logger.pretty_function()
         guard !transactions.isEmpty else { return [:] }
 
         let groupTransactions = TransactionGroup(grouping: transactions) { $0.month }

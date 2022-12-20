@@ -10,6 +10,7 @@ import SwiftUI
 
 extension String {
     func dateParsed() -> Date {
+        logger.pretty_function()
         guard let parsedDate = DateFormatter.allNumericFI.date(from: self) else { return Date() }
 
         return parsedDate
