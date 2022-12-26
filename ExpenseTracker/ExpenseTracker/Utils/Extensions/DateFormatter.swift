@@ -25,7 +25,6 @@ extension DateFormatter {
 
 extension Date: Strideable {
     func formatted() -> String {
-        logger.pretty_function()
         return self.formatted(.dateTime.year().month().day())
     }
 }
